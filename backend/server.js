@@ -7,6 +7,8 @@ const app = express();
 const connectDB = require("./config/db")
 const authRoutes = require("./routes/authRoutes")
 
+app.use(express.json());
+
 // Middleware to handle cors
 app.use(
     cors({
@@ -19,8 +21,11 @@ app.use(
 connectDB();
 
 app.use("/api/v1/auth", authRoutes);
+app.get("/", (req, res) => {
+    res.send("API is working");
+});
 
-app.use(express.json());
+
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+app.listen(PORT, () => {console.log(`Server running on port ${PORT}`)})

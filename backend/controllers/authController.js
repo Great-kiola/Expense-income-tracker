@@ -46,5 +46,5 @@ exports.registerUser = async (req, res) => {
 // Login User
 exports.loginUser = async (req, res) => {}
 
-// Register User
+// Get User info
 exports.getUserInfo = async (req, res) => {}
