@@ -1,6 +1,6 @@
 const express = require("express")
 const{
-    addexpense,
+    addExpense,
     getAllexpense,
     deleteexpense,
     downloadexpenseExcel
@@ -11,7 +11,7 @@ const {protect} = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 
-router.post("./add", protect, addexpense);
+router.post("./add", protect, addExpense);
 router.get("./get", protect, getAllexpense);
 router.get("./downloadExcel", protect, downloadexpenseExcel);
 router.delete("./:id", protect, deleteexpense);
