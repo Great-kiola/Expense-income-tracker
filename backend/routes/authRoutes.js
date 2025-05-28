@@ -1,6 +1,6 @@
 const express = require("express");
 const { protect } = require("../middlewares/authMiddleware")
-const { upload } = require("../middlewares/uploadMiddleware")
+const upload  = require("../middlewares/uploadMiddleware")
 
 const {
     registerUser,
