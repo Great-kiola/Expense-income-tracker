@@ -8,7 +8,7 @@ const connectDB = require("./config/db")
 const authRoutes = require("./routes/authRoutes")
 const incomeRoutes = require("./routes/incomeRoutes")
 const expenseRoutes = require("./routes/expenseRoutes")
-const expenseRoutes = require("./routes/dash boardRoutes")
+const dashboardRoutes = require("./routes/dashboardRoutes")
 
 app.use(express.json());
 
