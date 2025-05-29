@@ -43,7 +43,7 @@ const Login = () => {
 
       if (token) {
         localStorage.setItem("token", token);
-        navigate("/dashboard");
+        Navigate("/dashboard");
       }
     } catch (error) {
       if (error.response && error.response.data.message){
