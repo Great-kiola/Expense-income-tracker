@@ -3,10 +3,12 @@ const Expense = require("../models/expense");
 
 const {isValidObjectId, Types } = require("mongoose");
 
-exports.getDasboardData = async (req, res) => {
+
+// Dashboard Data
+exports.getDashboardData = async (req, res) => {
     try {
         const userId = req.user.id;
-        const userObjectsId = new Types.ObjectId(String(userId));
+        const userObjectId = new Types.ObjectId(String(userId));
 
         // Fetch the total & Expenses
         const totalIncome = await Income.aggregate([
@@ -14,9 +16,9 @@ exports.getDasboardData = async (req, res) => {
             { $group: { _id: null, total: { $sum: "$amount"}}},
         ])
 
-        console.log("totalIncome", { totalIncome, userId: isValidObject(userId)});
+        console.log("totalIncome", { totalIncome, userId: isValidObjectId(userId)});
 
-        const totalExpense = await expense.aggregate([
+        const totalExpense = await Expense.aggregate([
             { $match: { userId: userObjectId}},
             { $group: { _id: null, total: { $sum : "$amount"}}},
         ])
@@ -32,9 +34,8 @@ exports.getDasboardData = async (req, res) => {
             (sum, transaction ) => sum + transaction.amount, 0
         );
 
-
         // Get expense transaction in the last 30 days
-        const last30DaysExpenseTransactions = await expense.find({
+        const last30DaysExpenseTransactions = await Expense.find({
             userId,
             date: { $gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 10000)},
         }).sort({date: -1})
@@ -52,7 +53,7 @@ exports.getDasboardData = async (req, res) => {
                     type: "income",
                 })
             ),
-            ...(await expense.find({ userId }).sort({ date: -1 }).limit(5)).map(
+            ...(await Expense.find({ userId }).sort({ date: -1 }).limit(5)).map(
                 (txn) => ({
                     ...txn.toObject(),
                     type: "expense",
