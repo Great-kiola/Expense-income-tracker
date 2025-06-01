@@ -1,6 +1,6 @@
 import React from 'react'
 
-const customTooltip = ({ active, payload }) => {
+const CustomTooltip = ({ active, payload }) => {
 
     if (active && payload && payload.length) {
         return (
@@ -17,4 +17,4 @@ const customTooltip = ({ active, payload }) => {
 
 }
 
-export default customTooltip
+export default CustomTooltip
