@@ -13,6 +13,6 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 
-stopped 2h: 08:30
+stopped 2h: 50:00
 
 Quick commit today as i didnt have enough time to complete it
